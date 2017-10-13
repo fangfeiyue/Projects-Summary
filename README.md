@@ -16,7 +16,7 @@
 
 解决办法：每次点击立即购买跳转到下单页时都清空原来的state
 ```
-//调用
+//container中调用
 this.props.resetCheckOrder();
 
 //action写法
