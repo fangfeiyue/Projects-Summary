@@ -42,4 +42,22 @@ case RESET_CHECK_ORDER:
             请求失败
                 提示用户请求失败信息，不弹出时间控件
 ```
+3.断网的情况下点击请选择预约时间，应该弹出提示信息，如：网络开小差，请稍后再试！
+```
+if (!navigator.onLine){
+  this.props.dispatch(createToastAndAutoDismiss("网络开小差，请稍后重试！"));
+  return;
+}
+```
+在写这个的过程中犯了一个特别低级的错误，我把它封装了一个函数，在另一函数中调用,当没网的时候调用函数中下面的代码不执行，可结果是原来的代码照样执行，错误犯在我糊涂的以为在isNetwork中return掉，在调用函数中也就return掉了。。。。
+```
+const isNetwork = () => {
+  if (!navigator.onLine){
+    this.props.dispatch(createToastAndAutoDismiss("网络开小差，请稍后重试！"));
+    return;
+  }
+};
+```
 
+3.断网的情况下点击强选择
+3.断网的情况下点击强
