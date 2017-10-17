@@ -57,4 +57,9 @@ const isNetwork = () => {
     return;
   }
 };
+togglePicker = () => {
+  isNetwork();
+  //此时下面的代码照样执行
+  console.log('弹出时间控件');
+};
 ```
