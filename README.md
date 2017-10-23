@@ -304,6 +304,15 @@ var reg = /^([1-9]\d*|0)(\.\d{1,2})?$/;
 ```
 
 2017年06月06日 星期二  
+从微信商城，我的--》点击退货退款---》进入退货退款列表，每进入一次退货退款的商品都会翻倍，但接口返回的数据并没有增加，原因是使用下面的方法将数据进行了缓存，这种写法数组中有可能重复加载
+```
+returnsData: [...state.returnsData, ...action.selectReturnsData.data.list]
+```
+解决办法：采用lodash.union处理数组合并
+```
+import union from 'lodash/union';
+returnsData: union(state, action.selectReturnsData.data.list)
+```
 ### 潜客发券
 1.js动态添加的DOM元素因为时序的问题导致无法获取到dom元素，致使点击事件失效，jq的解决办法用事件代理，步骤  
 - 先找到父元素再给父元素添加on方法
