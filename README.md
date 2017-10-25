@@ -376,6 +376,7 @@ HTTPS 是建立在密码学基础之上的一种安全通信协议，严格来�
 转发是服务器行为，重定向是客户端行为
 
 http重定向的一种典型应用是防止表单重复提交
+![http重定向的一种典型应用是防止表单重复提交](http://note.youdao.com/yws/public/resource/c2361265179a03449f6d52397fd50033/xmlnote/D12FF24CC8B7443EB48ACD34D8956C7F/17849)
 ## 对接小马管家
 ### 遇到的问题：
 1.是小马管家商品但没有code，时间选择控件偶尔报indexOf is undefined。复现步骤：先选择是小马管家的商品带有code到下单页，然后在选择不带code的到下单页
