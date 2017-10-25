@@ -386,6 +386,10 @@ http重定向的一种典型应用是防止表单重复提交
 
 ![回流和重绘](http://note.youdao.com/yws/public/resource/c2361265179a03449f6d52397fd50033/xmlnote/A8CFAE83BA0A47298C7605AF7F589A70/17851)
 
+5.富文本编辑插件
+
+[wangeditor](http://www.cnblogs.com/wangfupeng1988/p/4366994.html)
+
 ## 对接小马管家
 ### 遇到的问题：
 1.是小马管家商品但没有code，时间选择控件偶尔报indexOf is undefined。复现步骤：先选择是小马管家的商品带有code到下单页，然后在选择不带code的到下单页
