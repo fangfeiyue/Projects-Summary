@@ -8,6 +8,130 @@
 - 框架选择：React全家桶
 - 模块化方案：ES6 + Webpack
 - 前后端分离方式：完全分离，纯静态方式
+## 社区
+### 遇到的问题
+1. 问题一：
+
+问题：社区首页选择切换门店地址从生产上的店铺切换到测试店铺，首页数据无变化
+
+原因：因为请求门店地址是异步请求的，还没等数据请求完就先调用了`hashHistory.goBack();`导致门店id号没有及时变化，页面返回首页调用调动`fetchAndHandleExhibition`方法更新首页数据，因为门店id还是之前的id，没能及时更新，所以会从store中读取之前的数据进行渲染。
+
+HomeAddressBarSearchContainer中相关代码
+```
+this.props.dispatch(fullitem? addressSelectedFull(fullitem):addressSelectedPOI(item, getCurrStore(serverdata.data,'storeId'), getCurrStore(serverdata.data,'storeName'),serverdata.data));
+hashHistory.goBack();
+```
+
+exhibition.js中相关代码
+```
+export function fetchAndHandleExhibition(exb_id,shared) {
+  return (dispatch,getState) => {
+    //情况1 直接命中store
+    // console.debug("#$#$#$#$ exb case1, 是否命中store.exhibition");
+    if (getState().exhibition) {
+      const {lastUpdated,storeId} = getState().exhibition;
+      // console.debug('getState().exhibition.storeId:', getState().exhibition.storeId);
+      // console.debug('exb_id:',getState().exhibition.exb_id , exb_id);
+      if (getCurrentStoreId()
+          && getCurrentStoreId() == getState().exhibition.storeId
+          && getState().exhibition.exb_id == exb_id
+          && !isCacheExpired(lastUpdated))
+      {
+          // console.debug("#$#$#$#$ exb case1 命中");
+          dispatch(fetchExhibitionSuccess(exb_id,
+            {
+              code:'0',
+              data: {...getState().exhibition} ,
+            },
+            lastUpdated));
+
+        // catpro
+        const data = getState().exhibition.booths;
+
+        const catproData = data.find((item) => item.templet_name === 'CATPRO') || null;
+        if (catproData) {
+          console.log('catpro cached');
+          const response = normalize(schema.formatCatproData(catproData), schema.catproSchema);
+          const catproId = catproData.id;
+          console.log('catproData normalized', response);
+          dispatch(fetchCatproSuccess(
+            catproId,
+            response,
+            Date.now()
+          ));
+        }
+
+        return Promise.resolve();
+      }
+    }
+    //情况2 命中localstorage
+    // console.debug("#$#$#$#$ exb case2, 是否命中localstorage");
+    const localdata = loadState(exbkey(exb_id));
+    if(localdata && !isCacheExpired(localdata.lastUpdated)
+        && getCurrentStoreId()
+        && getCurrentStoreId() == localdata.storeId
+      ){
+      // console.debug("#$#$#$#$ exb case2 命中, locaodata=",localdata);
+      dispatch(fetchExhibitionSuccess(exb_id,
+        {
+          code:'0',
+          data: {...localdata} ,
+        },
+        localdata.lastUpdated));
+
+      // catpro
+      const data = localdata.booths;
+      const catproData = data.find((item) => item.templet_name === 'CATPRO') || null;
+      if (catproData) {
+      console.log('catpro cached');
+        const response = normalize(schema.formatCatproData(catproData), schema.catproSchema);
+        const catproId = catproData.id;
+        console.log('catproData normalized', response);
+        dispatch(fetchCatproSuccess(
+          catproId,
+          response,
+          Date.now()
+        ));
+      }
+
+      return Promise.resolve();
+    }
+    // 情况3 全都没有命中
+    // console.debug("#$#$#$#$ exb case3,什么都没命中");
+    dispatch(fetchExhibitionRequest(exb_id));
+    return api.getExhibitionData(exb_id,shared)
+      .then((serverdata) => {
+        if(serverdata.code == 0){
+          dispatch(fetchExhibitionSuccess(exb_id,serverdata, Date.now()));
+          saveState(getState().exhibition, exbkey(exb_id));
+          return serverdata.data.booths
+        }else{
+          dispatch(fetchExhibitionFailure(exb_id,serverdata.message));
+        }
+      })
+      // 把其中的catpro数据单独处理
+      .then((data) => {
+        if(data==null) return;//added by yuanquan , "正在装修，敬请期待"会被显示为未知原因
+        const catproData = data.find((item) => item.templet_name === 'CATPRO') || null;
+        if (catproData) {
+          const response = normalize(schema.formatCatproData(catproData), schema.catproSchema);
+          const catproId = catproData.id;
+          console.log('catproData normalized', response);
+          dispatch(fetchCatproSuccess(
+            catproId,
+            response,
+            Date.now()
+          ));
+        }
+      })
+      .catch((error) => {
+        dispatch(fetchExhibitionFailure(exb_id,"未知原因"));
+      });
+  };
+}
+```
+
+解决办法：
 ## 对接小马管家
 ### 遇到的问题：
 1.是小马管家商品但没有code，时间选择控件偶尔报indexOf is undefined。复现步骤：先选择是小马管家的商品带有code到下单页，然后在选择不带code的到下单页
