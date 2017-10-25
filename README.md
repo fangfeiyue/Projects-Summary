@@ -162,6 +162,7 @@ handlerSubmitAddress() {
 }
 ```
 ---
+![地址](http://note.youdao.com/yws/public/resource/c2361265179a03449f6d52397fd50033/xmlnote/6C1057E55D2B41059C02E937E5DF46F3/17841)
 1.PersonalAddress.js 是新增收货地址页面
 
 2016年12月20日 星期二
@@ -205,7 +206,7 @@ handlerSubmitAddress() {
 
 1.map循环时，如`<div><img src = {src} key=i></div>`错误，应该写成`<div key=i><img src = {src}></div>`
 
-2. 动态获取LiftList方法getBooth(map(return 1))错误，无法得到1，应该写getBooth( return map(return 1))
+2.动态获取LiftList方法getBooth(map(return 1))错误，无法得到1，应该写getBooth( return map(return 1))
 
 2017年01月22日 星期日
 
