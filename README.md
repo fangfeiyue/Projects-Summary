@@ -9,7 +9,7 @@
 - 模块化方案：ES6 + Webpack
 - 前后端分离方式：完全分离，纯静态方式
 ## 社区
-[没用github写总结前的总结](http://note.youdao.com/noteshare?id=570d22f25bb912cb38285a9beb362771)
+[没用github写总结前的总结](http://note.youdao.com/noteshare?id=e7f8df7625ac6ad90e1eeba2c9c0533c)
 ### 遇到的问题
 1. 问题一：
 
