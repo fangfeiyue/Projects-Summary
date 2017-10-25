@@ -289,14 +289,17 @@ const fn=()=>{123}=>const fn = function(){123}
 
 4.React 如何添加多个className?    1.)拼接字符串`<div className={value.class + " " + value.class2}>{value.value}</div>`  2.）字符串模板`<div className={`${value.class} ${value.class2}`}>{value.value}</div>`
 
-5.文本过长出现省略号div{
-            width: 300px;
-            height: 300px;
-            border: 1px solid blue;
-            white-space: nowrap;    /*强制设置元素内文本不换行*/
-            overflow: hidden;   /*溢出文本隐藏（不隐藏，就谈不上省略）*/
-            text-overflow: ellipsis;
-        }
+5.文本过长出现省略号
+```
+div{
+    width: 300px;
+    height: 300px;
+    border: 1px solid blue;
+    white-space: nowrap;    /*强制设置元素内文本不换行*/
+    overflow: hidden;   /*溢出文本隐藏（不隐藏，就谈不上省略）*/
+    text-overflow: ellipsis;
+}
+```
 
 6.清楚浮动的方法
 1.）给父元素定高
