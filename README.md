@@ -162,8 +162,6 @@ handlerSubmitAddress() {
 }
 ```
 ---
-![地址](http://note.youdao.com/yws/public/resource/c2361265179a03449f6d52397fd50033/xmlnote/6C1057E55D2B41059C02E937E5DF46F3/17841)
-![地址](http://note.youdao.com/yws/public/resource/c2361265179a03449f6d52397fd50033/xmlnote/5F570953CB68429A841832186D0857D9/17843)
 1.PersonalAddress.js 是新增收货地址页面
 
 2016年12月20日 星期二
