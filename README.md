@@ -188,13 +188,13 @@ handlerSubmitAddress() {
 
 2017年01月17日 星期二
 
-1.锚节点一：<a href="#a"></a><a name="a"></a>
+1.锚节点一：`<a href="#a"></a><a name="a"></a>`
 
-2.锚节点二：<a href="#a"><div id="a"></div>
+2.锚节点二：`<a href="#a"><div id="a"></div>`
 
-3.a标签href拼接字符串：<a className={styles.lift_a} href={ar[3]}>
+3.a标签href拼接字符串：`<a className={styles.lift_a} href={ar[3]}>`
 
-4.href={`#${ar[index]}`}
+4.`href={`#${ar[index]}`}`
 
 1.我的问题解决了 方便大家看 直接自己答在这里了
 改用name做锚点
@@ -203,7 +203,7 @@ handlerSubmitAddress() {
 
 2017年01月19日 星期四
 
-1.map循环时，如<div><img src = {src} key=i></div>错误，应该写成<div key=i><img src = {src}></div>
+1.map循环时，如`<div><img src = {src} key=i></div>`错误，应该写成`<div key=i><img src = {src}></div>`
 
 2. 动态获取LiftList方法getBooth(map(return 1))错误，无法得到1，应该写getBooth( return map(return 1))
 
@@ -230,13 +230,13 @@ handlerSubmitAddress() {
 1.楼梯导航从container传递进去点击事件，要将事件当属性传给组件如：handleClick={this.handleClick}
 
 2.return(
-            <ul>
+            `<ul>
                 {
                     arr.map((item,index)=>
                         <LiftItem handleClick={handleClick} key={item} key1={index}/>
                     )
                 }
-            </ul>
+            </ul>`
         );因为页面还未渲染暂时拿不到key，但可以拿到key1，所以要用索引来做些事情的话需要用key1(任何一个不为关键字的变量都可以)承接数组索引
 
 3.js获取Html元素的实际宽度高度document.getElementById('headerContainer').offsetHeight;
@@ -287,7 +287,7 @@ const fn=()=>{123}=>const fn = function(){123}
 
 3.document.getElementById取不到只会返回null，document.getElementsByClassName('')没有取到正确的值返回空数组
 
-4.React 如何添加多个className?    1.)拼接字符串<div className={value.class + " " + value.class2}>{value.value}</div>  2.）字符串模板<div className={`${value.class} ${value.class2}`}>{value.value}</div>
+4.React 如何添加多个className?    1.)拼接字符串`<div className={value.class + " " + value.class2}>{value.value}</div>`  2.）字符串模板`<div className={`${value.class} ${value.class2}`}>{value.value}</div>`
 
 5.文本过长出现省略号div{
             width: 300px;
@@ -300,11 +300,11 @@ const fn=()=>{123}=>const fn = function(){123}
 
 6.清楚浮动的方法
 1.）给父元素定高
-2.）同级给个<div style="clear:both"></div>
+2.）同级给个`<div style="clear:both"></div>`
 3.）父级元素给overflow:hidden
 
 7.块级元素文本垂直居中对齐
-<style>
+`<style>
     div.outer {
         width: 300px;
         height: 200px;
@@ -315,10 +315,10 @@ const fn=()=>{123}=>const fn = function(){123}
         display: table-cell;
         vertical-align: middle;
     }
-</style>
-<div class="outer">
+</style>`
+`<div class="outer">
     <div class="inner">这段文字将垂直居中，无论这段文字是多行还是单行，他都能完美的显示在块级元素中间。</div>
-</div>
+</div>`
 
 8.事件冒泡：由小到大的过程，事件捕获：由document到具体元素的过程。DOM事件流同时包含两种事件模型，捕获型事件和冒泡型事件
 
@@ -328,7 +328,7 @@ const fn=()=>{123}=>const fn = function(){123}
 • 在W3c中，使用stopPropagation（）方法
 • 在IE下设置cancelBubble = true；
 在捕获的过程中stopPropagation（）；后，后面的冒泡过程也不会发生了~
-3.阻止事件的默认行为，例如click <a>后的跳转~
+3.阻止事件的默认行为，例如click `<a>`后的跳转~
 • 在W3c中，使用preventDefault（）方法；
 • 在IE下设置window.event.returnValue = false;
 4.哇，终于写完了，一边测试一边写的额，不是所有的事件都能冒泡，例如：blur、focus、load、unload，（这个是从别人的文章里摘过来的,我没测试）。
