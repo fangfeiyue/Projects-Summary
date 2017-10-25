@@ -161,6 +161,179 @@ handlerSubmitAddress() {
   });
 }
 ```
+---
+1.PersonalAddress.js 是新增收货地址页面
+
+2016年12月20日 星期二
+
+1.修改快递order的订单
+
+1.）charls抓包应设置为--SSL Proxcing Setting *.guoanshequ.wang  443   以前我设置的是edian.guoanshequ.wang 443没有考虑到项目是java和php两种环境的混合 
+
+2.）以前只注意查看response的json数据，没有注意request发送的数据，项目中requst的内容是base64编码，需要解码
+
+3.）获取到的group_id拼接进去刷新不成功，因为OrderDetailContainer中刷新是写在componentDidMount() {这个函数中的
+    this.refresh();
+  }
+
+2016年12月21日 星期三
+
+1.显示订单服务列表
+
+对比网页版和手机版抓取的数据，从请求头中解密base64对比出不同，在代码中删除不同的代码
+
+2017年01月10日 星期二
+
+1.文字下划线离文字远点，怎么实现呢？这个无法调节，只能使用给文字控件加padding值，然后加边框的方式实现
+
+2017年01月17日 星期二
+
+1.锚节点一：<a href="#a"></a><a name="a"></a>
+
+2.锚节点二：<a href="#a"><div id="a"></div>
+
+3.a标签href拼接字符串：<a className={styles.lift_a} href={ar[3]}>
+
+4.href={`#${ar[index]}`}
+
+1.我的问题解决了 方便大家看 直接自己答在这里了
+改用name做锚点
+再在点击事件下添加e.preventDefault()
+再用路由跳转就行 比如History.push
+
+2017年01月19日 星期四
+
+1.map循环时，如<div><img src = {src} key=i></div>错误，应该写成<div key=i><img src = {src}></div>
+
+2. 动态获取LiftList方法getBooth(map(return 1))错误，无法得到1，应该写getBooth( return map(return 1))
+
+2017年01月22日 星期日
+
+网站头部缩放会变形，解决办法:给body加min-width: 1210px
+
+2017年01月25日 星期三
+
+1.查看this.setState是否改变，打开react调试面板将鼠标放到设置setState对应的container上即可查看对应的state变化
+
+2.map遍历出来的组件，如果在组件中使用key是拿不到的，此时可以定义个key1承接index的值，以便我们使用index
+
+2017年02月06日 星期一
+
+1.getElementsByTagName获取的元素数组为伪数组，不能使用map等数组方法，但可以通过liftItem = Array.prototype.slice.call(liftItem);将其转换为数组
+
+2.js如何获取数组的最后一个元素？2.1alert(args[args.length-1]);   2.2alert(args.pop());
+
+3.做快递状态时点击地图无法进入下一页，因为是给地图的容器div加的点击事件，点击事件应该加给地图，map，用on就可以
+
+2017年02月07日 星期二
+
+1.楼梯导航从container传递进去点击事件，要将事件当属性传给组件如：handleClick={this.handleClick}
+
+2.return(
+            <ul>
+                {
+                    arr.map((item,index)=>
+                        <LiftItem handleClick={handleClick} key={item} key1={index}/>
+                    )
+                }
+            </ul>
+        );因为页面还未渲染暂时拿不到key，但可以拿到key1，所以要用索引来做些事情的话需要用key1(任何一个不为关键字的变量都可以)承接数组索引
+
+3.js获取Html元素的实际宽度高度document.getElementById('headerContainer').offsetHeight;
+
+2017年02月08日 星期三
+
+1.订单的边框随着内容的增加自动增高，核心知识点就是给父子都设置相同的min-height属性
+
+2.const fn=()=>(123)=>const fn = function fn() {return 123;};
+const fn=()=>{123}=>const fn = function(){123}
+
+2017年02月10日 星期五
+
+1不同大小的文字居中对齐
+
+2017年02月13日 星期一
+
+1.div铺满全屏的方法，方法一.设置html.body宽高100%方法2.position:fix；top:0;left:0;bottom:0;right:0;
+
+2.不同长度字数两端对齐最好不要用加空格的方式，因为会有兼容性问题，空格在不同浏览器中代表的长度不一样
+
+3.如果控制台输出的对象太长，想要找到某个字段可以用var aaa=JSON.stringify(state)
+    console.log(aaa)将对象转为字符串，然后再在hanleJSON工具中展开查找即可
+
+4.https里如果包含http资源，http资源会被禁止
+
+2017年02月20日 星期一
+
+ 1.jQuery Validate 插件为表单提供了强大的验证功能
+
+2.element.style{...}代表的是当前页面的顶层样式
+
+3.var test=!!o.flag;//等效于var test=o.flag||false;  
+
+2017年02月21日 星期二
+
+1.让元素高于父元素可设置margin-top为负值
+
+2.图片优化
+
+3.alert(document.getElementById('selAddCity').value);获取select的值
+
+2017年02月22日 星期三
+
+1.阻止事件向上传播e.stopPropagation();要写在子控件中
+
+2.数据范式化
+
+3.document.getElementById取不到只会返回null，document.getElementsByClassName('')没有取到正确的值返回空数组
+
+4.React 如何添加多个className?    1.)拼接字符串<div className={value.class + " " + value.class2}>{value.value}</div>  2.）字符串模板<div className={`${value.class} ${value.class2}`}>{value.value}</div>
+
+5.文本过长出现省略号div{
+            width: 300px;
+            height: 300px;
+            border: 1px solid blue;
+            white-space: nowrap;    /*强制设置元素内文本不换行*/
+            overflow: hidden;   /*溢出文本隐藏（不隐藏，就谈不上省略）*/
+            text-overflow: ellipsis;
+        }
+
+6.清楚浮动的方法
+1.）给父元素定高
+2.）同级给个<div style="clear:both"></div>
+3.）父级元素给overflow:hidden
+
+7.块级元素文本垂直居中对齐
+<style>
+    div.outer {
+        width: 300px;
+        height: 200px;
+        background: lightgray;
+        display: table;
+    }
+    div.inner {
+        display: table-cell;
+        vertical-align: middle;
+    }
+</style>
+<div class="outer">
+    <div class="inner">这段文字将垂直居中，无论这段文字是多行还是单行，他都能完美的显示在块级元素中间。</div>
+</div>
+
+8.事件冒泡：由小到大的过程，事件捕获：由document到具体元素的过程。DOM事件流同时包含两种事件模型，捕获型事件和冒泡型事件
+
+9.支持W3C标准的浏览器在添加事件时用addEventListener(event,fn,useCapture)方法，基中第3个参数useCapture是一个Boolean值，用来设置事件是在事件捕获时执行，还是事件冒泡时执行。而不兼容W3C的浏览器(IE)用attachEvent()方法，此方法没有相关设置，不过IE的事件模型默认是在事件冒泡时执行的，也就是在useCapture等于false的时候执行，所以把在处理事件时把useCapture设置为false是比较安全，也实现兼容浏览器的效果。
+
+10.事件的传播是可以阻止的：
+• 在W3c中，使用stopPropagation（）方法
+• 在IE下设置cancelBubble = true；
+在捕获的过程中stopPropagation（）；后，后面的冒泡过程也不会发生了~
+3.阻止事件的默认行为，例如click <a>后的跳转~
+• 在W3c中，使用preventDefault（）方法；
+• 在IE下设置window.event.returnValue = false;
+4.哇，终于写完了，一边测试一边写的额，不是所有的事件都能冒泡，例如：blur、focus、load、unload，（这个是从别人的文章里摘过来的,我没测试）。
+
+11.可用于行内块垂直居中的另一种方法
 ## 对接小马管家
 ### 遇到的问题：
 1.是小马管家商品但没有code，时间选择控件偶尔报indexOf is undefined。复现步骤：先选择是小马管家的商品带有code到下单页，然后在选择不带code的到下单页
