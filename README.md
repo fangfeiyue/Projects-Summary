@@ -131,7 +131,19 @@ export function fetchAndHandleExhibition(exb_id,shared) {
 }
 ```
 
-解决办法：
+解决办法：等请求完数据后再调用`hashHistory.goBack();`方法
+```
+if (fullitem){
+  this.props.addressSelectedFull(fullitem).then(()=>{
+    hashHistory.goBack();
+  });
+}else{
+  this.props.addressSelectedPOI(item, getCurrStore(serverdata.data,'storeId'), getCurrStore(serverdata.data,'storeName'),serverdata.data).then(()=>{
+    hashHistory.goBack();
+  });
+}
+```
+
 ## 对接小马管家
 ### 遇到的问题：
 1.是小马管家商品但没有code，时间选择控件偶尔报indexOf is undefined。复现步骤：先选择是小马管家的商品带有code到下单页，然后在选择不带code的到下单页
