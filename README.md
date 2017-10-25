@@ -307,7 +307,8 @@ div{
 3.）父级元素给overflow:hidden
 
 7.块级元素文本垂直居中对齐
-`<style>
+```
+<style>
     div.outer {
         width: 300px;
         height: 200px;
@@ -318,23 +319,31 @@ div{
         display: table-cell;
         vertical-align: middle;
     }
-</style>`
-`<div class="outer">
+</style>
+<div class="outer">
     <div class="inner">这段文字将垂直居中，无论这段文字是多行还是单行，他都能完美的显示在块级元素中间。</div>
-</div>`
+</div>
+```
 
 8.事件冒泡：由小到大的过程，事件捕获：由document到具体元素的过程。DOM事件流同时包含两种事件模型，捕获型事件和冒泡型事件
 
 9.支持W3C标准的浏览器在添加事件时用addEventListener(event,fn,useCapture)方法，基中第3个参数useCapture是一个Boolean值，用来设置事件是在事件捕获时执行，还是事件冒泡时执行。而不兼容W3C的浏览器(IE)用attachEvent()方法，此方法没有相关设置，不过IE的事件模型默认是在事件冒泡时执行的，也就是在useCapture等于false的时候执行，所以把在处理事件时把useCapture设置为false是比较安全，也实现兼容浏览器的效果。
 
 10.事件的传播是可以阻止的：
+
 • 在W3c中，使用stopPropagation（）方法
+
 • 在IE下设置cancelBubble = true；
+
 在捕获的过程中stopPropagation（）；后，后面的冒泡过程也不会发生了~
-3.阻止事件的默认行为，例如click `<a>`后的跳转~
+
+阻止事件的默认行为，例如click `<a>`后的跳转~
+
 • 在W3c中，使用preventDefault（）方法；
+
 • 在IE下设置window.event.returnValue = false;
-4.哇，终于写完了，一边测试一边写的额，不是所有的事件都能冒泡，例如：blur、focus、load、unload，（这个是从别人的文章里摘过来的,我没测试）。
+
+哇，终于写完了，一边测试一边写的额，不是所有的事件都能冒泡，例如：blur、focus、load、unload，（这个是从别人的文章里摘过来的,我没测试）。
 
 11.可用于行内块垂直居中的另一种方法
 ## 对接小马管家
