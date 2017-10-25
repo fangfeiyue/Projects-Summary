@@ -346,6 +346,7 @@ div{
 哇，终于写完了，一边测试一边写的额，不是所有的事件都能冒泡，例如：blur、focus、load、unload，（这个是从别人的文章里摘过来的,我没测试）。
 
 11.可用于行内块垂直居中的另一种方法
+![行内块垂直居中](http://note.youdao.com/yws/public/resource/c2361265179a03449f6d52397fd50033/xmlnote/A703B23B47E640529EF50A7FBEC5D9C2/17847)
 ## 对接小马管家
 ### 遇到的问题：
 1.是小马管家商品但没有code，时间选择控件偶尔报indexOf is undefined。复现步骤：先选择是小马管家的商品带有code到下单页，然后在选择不带code的到下单页
