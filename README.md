@@ -143,7 +143,23 @@ if (fullitem){
   });
 }
 ```
+2.问题二：
+问题：在我的模块，点击地址管理，修改当前选择的地址，保存之后，购物车的地址没有更新
 
+原因：点击保存之后并没有更新所选取地址的store
+```
+handlerSubmitAddress() {
+  this.props.dispatch(asynSavePersonalAddress(this.props.saveAddress));
+}
+```
+解决办法：点击保存的时候，更新选取地址的store
+```
+handlerSubmitAddress() {
+  this.props.addressSelectedFull(this.props.saveAddress).then(()=>{
+    this.props.dispatch(asynSavePersonalAddress(this.props.saveAddress));
+  });
+}
+```
 ## 对接小马管家
 ### 遇到的问题：
 1.是小马管家商品但没有code，时间选择控件偶尔报indexOf is undefined。复现步骤：先选择是小马管家的商品带有code到下单页，然后在选择不带code的到下单页
