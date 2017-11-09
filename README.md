@@ -1246,6 +1246,29 @@ li::after {
     transform-origin: 0 0;
 }
 ```
+### 开发票
+1.问题： 如果点击企业发票，开发票页面顶部有个必须填写纳税人识别号的提示框，选择个人，这个提示框消失。因为头部开发票的标题是固定的，如果提示框消失页面有些内容就会被挡住。
+
+解决办法：在提示框下面再添加一个div它的高度和提示框的高度一样，如果提示框隐藏它就显示，让它占据提示框的位置。页面内容就不会被挡住了。
+
+代码：
+```
+const InvoiceTips = ({
+    isToggleTips,
+    toggleInvoiceInstructions
+}) => (
+    <div>
+        <div className="box invoiceTips" style={{display:isToggleTips?'block':'none'}}>
+            <span>警示</span>
+            开企业抬头发票，请准确填写对应的"纳税人识别号"，以免影响您发票报销。
+            <span
+                onClick={(e)=>toggleInvoiceInstructions(e, 'isToggleTips')}
+            >x</span>
+        </div>
+        <div className="hideInvoiceTips" style={{display:isToggleTips?'none':'block'}}></div>
+    </div>
+);
+```
 ## 说明
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
 
