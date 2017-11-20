@@ -1269,6 +1269,17 @@ const InvoiceTips = ({
     </div>
 );
 ```
+## 发票
+1.微信接入发票，因为第三方给发票详情是个pdf链接，微信安卓端没法显示，只会提示下载。产品将查看详情改为复制链接，那么问题来了，react怎么复制链接到剪切板呢,其实很简单，操作步骤如下
+- npm install copy-to-clipboard --save
+- 代码
+```
+import copy from 'copy-to-clipboard';
+const copyUrl = (url) => {
+    copy(url); //'我是要复制的内容'
+    alert('成功复制到剪贴板');
+};
+```
 ## 说明
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
 
