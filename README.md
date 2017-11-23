@@ -1297,7 +1297,59 @@ const check = combineReducers({
 ```
 只需要将上面的state装到一个数据就可以了
 ```
+//action
+export const updateCheckList=(res)=>({
+  type: UPDATE_CHECK_LIST,
+  res
+});
+
+export function checkOrder(id) {
+  return (dispatch, getState) => {
+    dispatch(checkOrderRequest());
+
+    return api.checkOrder(id)
+      .then(json => {
+        if (json.code === '0') {
+          console.log('jsonOrders=====>',jsonOrders);
+          // dispatch(checkOrderSuccess(jsonOrders.data.eshops[0]));
+          // dispatch(checkOrderSuccess(jsonOrders.data.eshops[1]));
+
+          jsonOrders.data.eshops.map(item => {
+            dispatch(checkOrderSuccess(item));
+            dispatch(updateCheckList(getState().check));
+          });
+
+          // dispatch(checkOrderSuccess(json.data));
+          console.log('console.log===>', JSON.stringify(json.data));
+        } else {
+          dispatch(createToastAndGoBack(json.message));
+        }
+      })
+      .catch((error) => {
+        dispatch(createToastAndAutoDismiss(`网络错误: ${error.message}`));
+        dispatch(checkOrderFailure(error));
+      });
+  };
+}
+
+//reducer
+export default function updateCheckListReducer(state=initState, action){
+    switch(action.type){
+        case UPDATE_CHECK_LIST:
+            checks.push(action.res);
+            return {
+                ...state,
+                check: checks
+            }
+        case RESET_CHECK_LIST:
+            checks = [];
+            return initState;
+        default:
+            return state;
+    }
+}
 ```
+新的数据从checkList中取就可以了
 ## 说明
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
 
