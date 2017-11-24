@@ -1269,7 +1269,7 @@ const InvoiceTips = ({
     </div>
 );
 ```
-## 发票
+### 合并支付
 1.微信接入发票，因为第三方给发票详情是个pdf链接，微信安卓端没法显示，只会提示下载。产品将查看详情改为复制链接，那么问题来了，react怎么复制链接到剪切板呢,其实很简单，操作步骤如下
 - npm install copy-to-clipboard --save
 - 代码
@@ -1350,6 +1350,21 @@ export default function updateCheckListReducer(state=initState, action){
 }
 ```
 新的数据从checkList中取就可以了
+
+4.React动态遍历生成元素除了map还可以用for...in，适合对象类型的数据。
+```
+creatOrderItem = ()=>{
+    
+    var dom = [];
+    for (let i in this.props.checkList){
+      dom.push(
+        <div>测试</div>
+      );
+    }
+
+    return dom;
+  }
+```
 ## 说明
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
 
