@@ -1365,6 +1365,57 @@ creatOrderItem = ()=>{
     return dom;
   }
 ```
+5.数组方法之reduce
+reduce()方法接收一个函数callbackfn作为累加器（accumulator），数组中的每个值（从左到右）开始合并，最终为一个值。
+
+reduce()方法接收callbackfn函数，而这个函数包含四个参数：
+
+- preValue: 上一次调用回调返回的值，或者是提供的初始值（initialValue）
+- curValue: 数组中当前被处理的数组项
+- index: 当前数组项在数组中的索引值
+- array: 调用 reduce()方法的数组
+
+项目中计算总价格的时候使用了这个方法.
+```
+const totalPrice = () =>
+      this.props.checkList[i].options.productList.reduce(
+        (price, item) =>
+          price +
+          (item.grouponinfo ? item.grouponinfo.groupon_price : item.price) *
+            item.amount,
+        0
+);
+```
+
+6.this.props.routeParams.xx获取url中的参数
+
+7.每次填写完返回的时候都会重新更新state
+
+解决办法：设置一个标记为，每当进入订单备注页面设置为true,当返回时检查这个值是真还是假，如果是真就不执行掉接口的方法更新state.
+
+8.把独立出来的payment合并到每个orderItem里面
+```
+//action中 createOrder.js
+export const updatePayment=(payment)=>({
+  payment,
+  type: UPDATE_PAYMENT
+});
+
+//reducer中更新options单独的
+
+case UPDATE_PAYMENT:
+	return {
+        ...state,
+        paymentType: action.payment
+     }
+```
+
+9.在更新各个E店配送时间的时候，因为时间用的是个插件，要想找到对应的时间state必须通过id才能找到，刚开始想通过最内层的组件将id传过来，发现最内层的组件根本看不懂。怎么才能不通过最内层的组件传值呢？在外层组件传一个方法，代码如下，这个方法里将id传进去，再发action
+```
+updateDateTime = (name, value) => {
+    this.props.updateDeliveryTime(name, value, this.props.id);
+}
+```
 ## 说明
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
 
