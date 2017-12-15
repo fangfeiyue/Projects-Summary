@@ -1416,6 +1416,9 @@ updateDateTime = (name, value) => {
     this.props.updateDeliveryTime(name, value, this.props.id);
 }
 ```
+## 合并支付
+下单页代金券功能演示
+![代金券功能演示](https://github.com/fangfeiyue/Projects-Summary/blob/master/img/coupon.gif)
 ## 说明
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
 
