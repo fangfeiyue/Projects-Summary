@@ -1419,6 +1419,13 @@ updateDateTime = (name, value) => {
 ## 合并支付
 下单页代金券功能演示
 ![代金券功能演示](https://github.com/fangfeiyue/Projects-Summary/blob/master/img/coupon.gif)
+
+- vconsole在react中的使用
+```
+npm install vconsole --save
+import VConsole from 'vconsole';
+var vConsole = new VConsole();
+```
 ## 说明
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
 
