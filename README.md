@@ -1419,6 +1419,12 @@ updateDateTime = (name, value) => {
 ## 合并支付
 下单页代金券功能演示
 ![代金券功能演示](https://github.com/fangfeiyue/Projects-Summary/blob/master/img/coupon.gif)
+
+### 2018年03月01日 星期四
+今天社区项目有个bug，在微信支付的时候会调用微信支付，如果把这个项目运行到浏览器，点击提交订单按道理应该跳转到如下页面进行支付，
+
+但是点击支付报错，没有正确调用支付宝
+
 ## 说明
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
 
