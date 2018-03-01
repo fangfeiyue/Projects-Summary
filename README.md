@@ -1427,9 +1427,28 @@ import VConsole from 'vconsole';
 var vConsole = new VConsole();
 ```
 ### 2018年03月01日 星期四
-今天社区项目有个bug，在微信支付的时候会调用微信支付，如果把这个项目运行到浏览器，点击提交订单按道理应该跳转到如下页面进行支付，
+Q:今天社区项目有个bug，在微信支付的时候会调用微信支付，如果把这个项目运行到浏览器，点击提交订单按道理应该跳转到如下页面进行支付，
+![支付宝](https://github.com/fangfeiyue/Projects-Summary/blob/master/img/Snip20180301_1.png)
+但是点击支付报错，没有正确调用支付宝。
 
-但是点击支付报错，没有正确调用支付宝
+A:原因是新的支付接口需要传递的是一个数组。但是之前都是从订单列表或者订单详情页进入的这个页面，现在要增加从下单页进入这个面。就需要计算需要支付的总金额，因为下单页已经计算过了总金额，支付页面就像直接使用这个值，但怎么都拿不过来。在`getTotalPrice`函数中设置state或者发action都不行，一直报错。后来用了promise来解决
+```
+componentWillUpdate(){
+  this.asynGetTotalPrice();
+}
+
+asynGetTotalPrice=()=>{
+    let promise = new Promise((resolve, reject) => {
+      if (isGetTotalPrice){
+        resolve(this.getTotalPrice());
+      }
+    });
+    promise.then((res)=>{
+      this.props.dispatch(getTotalPrice(res));
+      return;
+    });
+};
+```
 ## 说明
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
 
