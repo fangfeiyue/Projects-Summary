@@ -1449,6 +1449,50 @@ asynGetTotalPrice=()=>{
     });
 };
 ```
+
+#### 2018年03月09日 星期五
+1. A： 多次点击一个li标签，再点击一次确定按钮，会多次弹出alert()
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+</head>
+<body>
+    <ul id="ul">
+        <li>我爱1</li>
+        <li>我爱2</li>
+        <li>我爱3</li>
+        <li>我爱4</li>
+    </ul>
+    <button id="submit">确认</button>
+    <script>
+        var str;
+
+        $('#ul li').click(function(){
+            str = $(this).text();
+            aaa(str);
+        });
+    </script>
+    <script>
+        function aaa(str){
+            console.log(str);
+            $('#submit').click(function(){
+                console.log(str,222);
+                alert(11);//会多次弹出
+            });
+        }
+    </script>
+</body>
+</html>
+```
+Q：每次点击li标签都会调用aaa函数，往事件队列里添加一个submit的click函数，当点击了确定后，会一次执行事件队列里的函数
+
+2.
 ## 说明
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
 
