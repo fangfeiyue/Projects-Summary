@@ -1493,6 +1493,7 @@ asynGetTotalPrice=()=>{
 Q：每次点击li标签都会调用aaa函数，往事件队列里添加一个submit的click函数，当点击了确定后，会一次执行事件队列里的函数
 
 2.Q: 怎么实现下面的样式布局
+![文字平分宽度布局](https://github.com/fangfeiyue/Projects-Summary/blob/master/img/Snip20180315_15.png)
 ## 说明
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
 
