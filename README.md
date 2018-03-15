@@ -1495,6 +1495,7 @@ Q：每次点击li标签都会调用aaa函数，往事件队列里添加一个su
 2.Q: 怎么实现下面的样式布局
 
 ![文字平分宽度布局](https://github.com/fangfeiyue/Projects-Summary/blob/master/img/Snip20180315_15.png)
+
 A: 
 
 ```
