@@ -1514,6 +1514,15 @@ A:
 <div class="justify">年龄<span></span></div>
 <div class="justify">收货地址<span></span></div>
 ```
+
+### 2018年06月12日18:25:16
+
+1. 做统计的时候加了beforeexhibitioncontainer，但是会报mtaH5找不到的错误，原因是math5依赖的js加载太慢，造成了时序问题
+
+2. 做专场统计的时候需要统计成功进入专场和失败进入专场的次数，本来想是在请求专场的方法后加.then，但结果报.then not defined，因为action文件中返回的是 Promise.resolve()，最后用this.props.dispacth(func).then()解决了
+
+3. 今天在做当点击购物车加减号的时候，加减号变大再缩小使用到了react-state第三方库，直接在组件中使用，会报getTweeningValue undefained，只能按照它官方文档的格式将组件写成了const Test = React.createClass({})这种形式
+
 ## 说明
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
 
