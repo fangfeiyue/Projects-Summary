@@ -1533,6 +1533,22 @@ A:
 
 - A:  [解决页面滚动时吸顶操作不能及时响应bug](https://segmentfault.com/a/1190000008004300)
 
+#### 2018年07月11日 星期三
+
+- Q: 自己github中的项目共用一个ssh
+
+- A:
+  - ssh-keygen -t rsa -C "邮箱名"
+  - 一路回车
+  - 查看生成的密钥(打开id_rsa.pub文件)
+  - 全选复制id_rsa.pub文件中的内容
+  - 打开github账户设置，选择SSH and GPG keys 选择 SSH keys右边的 New SSH key
+  - 将复制的内容拷贝到弹出框中的key输入框中
+  - 点击Add SSH key完成添加
+
+- Q:
+
+- A:
 - Q:
 
 - A:
